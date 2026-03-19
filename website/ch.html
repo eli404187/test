@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Wollmüller</title>
+    <link rel="icon" href="doppel.svg" type="image/svg+xml">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #bc0004;
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: width 0.2s ease, height 0.2s ease;
+        }
+
+        .cursor-dot.hover {
+            width: 25px;
+            height: 25px;
+            box-shadow: 0 0 20px #bc0004;
+        }
+
+        body {
+            font-family: 'Futura PT', 'Futura', 'Century Gothic', sans-serif;
+            background-color: #ffffff;
+            color: #bc0004;
+        }
+
+        header {
+            background-color: #ffffff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            gap: 100px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            height: 100px;
+        }
+
+        .logo img {
+            height: 100px;
+        }
+
+        .studio-text {
+            font-size: 40px;
+            color: #bc0004;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #bc0004;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 50px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: #eee;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="cursor-dot"></div>
+
+<header>
+    <div class="header-container">
+        <div class="logo">
+            <img src="doppel.svg">
+        </div>
+        <div class="studio-text">Studio Wollmüller</div>
+    </div>
+</header>
+
+<section class="gallery-grid">
+    <div class="gallery-item"><img src="Image1.jpeg"></div>
+    <div class="gallery-item"><img src="Image2.jpeg"></div>
+    <div class="gallery-item"><img src="Image3.png"></div>
+    <div class="gallery-item"><img src="Image4.png"></div>
+</section>
+
+<script>
+const cursor = document.querySelector(".cursor-dot");
+
+document.addEventListener("mousemove", function(e) {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+});
+
+const items = document.querySelectorAll(".gallery-item");
+
+items.forEach(item => {
+    item.addEventListener("mouseenter", () => {
+        cursor.classList.add("hover");
+    });
+
+    item.addEventListener("mouseleave", () => {
+        cursor.classList.remove("hover");
+    });
+});
+</script>
+
+</body>
+</html>
